@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Agendamento</h2>
+
+            <label for="tecnica">Técnica de Embelezamento</label>
+            <select id="tecnica">
+                <option value="">Selecione</option>
+                <option value="pele">Pele</option>
+                <option value="cilios">Cílios</option>
+                <option value="labios">Lábios</option>
+                <option value="sobrancelhas">Sobrancelhas</option>
+            </select>
+
+            <label for="tratamento">Tratamento</label>
+            <select id="tratamento" multiple>
+                <option value="limpeza">Limpeza de Pele - 60min</option>
+                <option value="hidratação">Hidratação Facial - 40min</option>
+                <option value="cilios_fio">Alongamento de Cílios - 90min</option>
+                <option value="labios_tinta">Micropigmentação Lábios - 120min</option>
+                <option value="sobrancelha_fio">Design de Sobrancelhas - 30min</option>
+            </select>
+            <small>(Segure Ctrl para selecionar mais de um)</small>
+
+            <label for="profissional">Profissional</label>
+            <select id="profissional">
+                <option value="">Selecione</option>
+                <option value="ana">Ana - Esteticista</option>
+                <option value="maria">Maria - Lash Designer</option>
+                <option value="juliana">Juliana - Micropigmentadora</option>
+            </select>
+
+            <label for="horario">Horário disponível</label>
+            <select id="horario">
+                <option value="">Selecione</option>
+                <option value="09:00">09:00</option>
+                <option value="10:30">10:30</option>
+                <option value="13:00">13:00</option>
+                <option value="15:30">15:30</option>
+                <option value="17:00">17:00</option>
+            </select>
+
+            <button onclick="confirmarAgendamento()">Confirmar Agendamento</button>
+            <p id="resultado"></p>
+
+            <p><a href="agenda_profissional.html">Ver Agenda do Profissional</a></p>
+        </div>
+    </div>
+
+    <script>
+        function confirmarAgendamento() {
+            const tecnica = document.getElementById("tecnica").value;
+            const tratamentos = Array.from(document.getElementById("tratamento").selectedOptions).map(opt => opt.text);
+            const profissional = document.getElementById("profissional").value;
+            const horario = document.getElementById("horario").value;
+
+            if (!tecnica || tratamentos.length === 0 || !profissional || !horario) {
+                document.getElementById("resultado").innerHTML = "⚠️ Preencha todos os campos!";
+                document.getElementById("resultado").style.color = "red";
+                return;
+            }
+
+            document.getElementById("resultado").innerHTML = 
+                `✅ Agendamento confirmado:<br>
+                 Técnica: <b>${tecnica}</b><br>
+                 Tratamentos: <b>${tratamentos.join(", ")}</b><br>
+                 Profissional: <b>${profissional}</b><br>
+                 Horário: <b>${horario}</b>`;
+            document.getElementById("resultado").style.color = "green";
+        }
+    </script>
+</body>
+</html>

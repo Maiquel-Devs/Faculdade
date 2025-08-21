@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda do Profissional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Agenda do Profissional</h2>
+
+            <label for="profissional">Selecione o Profissional</label>
+            <select id="profissional" onchange="mostrarAgenda()">
+                <option value="">Selecione</option>
+                <option value="ana">Ana - Esteticista</option>
+                <option value="maria">Maria - Lash Designer</option>
+                <option value="juliana">Juliana - Micropigmentadora</option>
+            </select>
+
+            <table id="tabelaAgenda">
+                <thead>
+                    <tr>
+                        <th>Horário</th>
+                        <th>Status</th>
+                        <th>Tratamentos</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <p><a href="agendamento.html">Voltar ao Agendamento</a></p>
+        </div>
+    </div>
+
+    <script>
+        const agendamentos = {
+            "ana": [
+                {horario: "09:00", tratamentos: ["Limpeza de Pele"], status: "Ocupado"},
+                {horario: "10:30", tratamentos: ["Hidratação Facial"], status: "Ocupado"},
+                {horario: "13:00", tratamentos: [], status: "Livre"},
+                {horario: "15:30", tratamentos: ["Design de Sobrancelhas"], status: "Ocupado"},
+                {horario: "17:00", tratamentos: [], status: "Livre"}
+            ],
+            "maria": [
+                {horario: "09:00", tratamentos: ["Alongamento de Cílios"], status: "Ocupado"},
+                {horario: "10:30", tratamentos: [], status: "Livre"},
+                {horario: "13:00", tratamentos: ["Alongamento de Cílios"], status: "Ocupado"},
+                {horario: "15:30", tratamentos: [], status: "Livre"},
+                {horario: "17:00", tratamentos: ["Alongamento de Cílios"], status: "Ocupado"}
+            ],
+            "juliana": [
+                {horario: "09:00", tratamentos: ["Micropigmentação Lábios"], status: "Ocupado"},
+                {horario: "10:30", tratamentos: [], status: "Livre"},
+                {horario: "13:00", tratamentos: ["Micropigmentação Lábios"], status: "Ocupado"},
+                {horario: "15:30", tratamentos: [], status: "Livre"},
+                {horario: "17:00", tratamentos: ["Micropigmentação Lábios"], status: "Ocupado"}
+            ]
+        };
+
+        function mostrarAgenda() {
+            const profissional = document.getElementById("profissional").value;
+            const tbody = document.getElementById("tabelaAgenda").querySelector("tbody");
+            tbody.innerHTML = "";
+
+            if (!profissional) return;
+
+            agendamentos[profissional].forEach(slot => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${slot.horario}</td>
+                    <td style="color:${slot.status === 'Livre' ? 'green' : 'red'}">${slot.status}</td>
+                    <td>${slot.tratamentos.join(", ") || "-"}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>
