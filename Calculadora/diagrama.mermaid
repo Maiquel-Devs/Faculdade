@@ -1,0 +1,36 @@
+classDiagram
+    direction LR
+
+    %% 1. CLASSE ABSTRATA E HERANÇA (Mantido)
+    class Operacao {
+        - valorA : double
+        - valorB : double
+        + calcular() : double
+    }
+    Operacao <|-- Soma
+    Operacao <|-- Subtracao
+    Operacao <|-- Divisao
+    Operacao <|-- Potencia
+
+    %% 2. CLASSES DE LÓGICA E AGREGADORAS (Mantido)
+    class Historico {
+        - registros : List<Operacao>
+        + adicionarOperacao(op)
+    }
+    class Calculadora {
+        - historico : Historico
+        + executarOperacao(tipo, scanner)
+    }
+
+    %% RELAÇÕES
+    Historico "1" o-- "0..*" Operacao : registra
+    Calculadora "1" *-- "1" Historico : gerencia
+
+    %% 3. INTERFACE/APP: Corrigido o atributo estático e aplicado novo estilo
+    class CalculadoraApp {
+        - calculadora : Calculadora
+        + main(args)
+    }
+
+    %% Associação: App usa Calculadora
+    CalculadoraApp --> Calculadora : usa
