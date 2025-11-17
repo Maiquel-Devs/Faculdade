@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - SmartClinic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =================================================== */
+        /* 1. ESTILOS GERAIS E VARIÁVEIS (Estilo mantido)      */
+        /* =================================================== */
+        :root {
+            --cor-azul-principal: #007bff;
+            --cor-azul-claro-bg: #e6f2ff; /* Para botões de horário */
+            --cor-branca: #ffffff;
+            --cor-cinza-fundo: #f4f7f6;
+            --cor-texto: #333;
+            --cor-borda-leve: #dbe2e9;
+            --sombra-leve: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-cinza-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        /* =================================================== */
+        /* 2. ESTILOS DO "RETÂNGULO" (O Card de Agendamento)   */
+        /* =================================================== */
+
+        /* Centraliza o card na tela */
+        .body-centralizado {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 40px); 
+        }
+
+        /* O "retângulo" branco (card) */
+        .card-formularia { /* Usando um nome mais genérico */
+            background: var(--cor-branca);
+            box-shadow: var(--sombra-leve);
+            border-radius: 12px;
+            padding: 35px 40px;
+            width: 100%;
+            max-width: 480px; /* Um pouco mais largo para o agendamento */
+            text-align: center; 
+        }
+
+        /* O "Cabeçalho azul" é este título */
+        .card-formularia h2 {
+            color: var(--cor-azul-principal);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        /* Campos de formulário (Especialidade, Médico, Data) */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left; /* Alinha labels à esquerda */
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        /* Estilo unificado para inputs e selects */
+        .form-group input[type="text"],
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 1px solid var(--cor-borda-leve);
+            border-radius: 8px;
+            box-sizing: border-box; 
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-branca);
+        }
+        
+        /* Seta customizada para o <select> */
+        .form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M7.41%208.59L12%2013.17l4.59-4.58L18%2010l-6%206-6-6%201.41-1.41z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+        }
+
+        /* --- Botões de Horário (Azul-claro) --- */
+        .horarios-disponiveis {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+            gap: 10px;
+        }
+
+        .btn-horario {
+            background-color: var(--cor-azul-claro-bg); /* Fundo azul-claro */
+            color: var(--cor-azul-principal); /* Texto azul */
+            border: 1px solid var(--cor-borda-leve);
+            padding: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        /* Estilo para o horário selecionado */
+        .btn-horario.selecionado {
+            background-color: var(--cor-azul-principal);
+            color: var(--cor-branca);
+        }
+
+        /* --- Botão Principal "Confirmar" --- */
+        .btn {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px; /* Arredondado */
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--cor-azul-principal);
+            color: var(--cor-branca);
+        }
+        
+        .card-formularia .btn-primary {
+            width: 100%;
+            margin-top: 15px; /* Menor margem */
+        }
+    </style>
+</head>
+
+<body class="body-centralizado">
+
+    <main class="card-formularia">
+        
+        <h2>Agendar Consulta</h2>
+        
+        <form action="#" method="POST">
+            
+            <div class="form-group">
+                <label for="especialidade">Especialidade</label>
+                <select id="especialidade" name="especialidade">
+                    <option value="">Selecione...</option>
+                    <option value="cardio">Cardiologia</option>
+                    <option value="dermato">Dermatologia</option>
+                    <option value="orto">Ortopedia</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="medico">Médico</label>
+                <select id="medico" name="medico">
+                    <option value="">Selecione...</option>
+                    <option value="dr_a">Dr. Ana Silva</option>
+                    <option value="dr_b">Dr. Bruno Costa</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="data">Data da Consulta</label>
+                <input type="text" id="data" name="data" placeholder="DD/MM/AAAA">
+            </div>
+
+            <div class="form-group">
+                <label>Horários Disponíveis</label>
+                <div class="horarios-disponiveis">
+                    <button type="button" class="btn-horario">09:00</button>
+                    <button type="button" class="btn-horario">09:30</button>
+                    <button type="button" class="btn-horario selecionado">10:00</button>
+                    <button type="button" class="btn-horario">10:30</button>
+                    <button type="button" class="btn-horario">11:00</button>
+                    <button type="button" class="btn-horario">11:30</button>
+                </div>
+            </div>
+            
+            <button type-"submit" class="btn btn-primary">Confirmar</button>
+        </form>
+
+    </main>
+
+</body>
+</html>

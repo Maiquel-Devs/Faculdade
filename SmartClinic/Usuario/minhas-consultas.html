@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Consultas - SmartClinic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =================================================== */
+        /* 1. ESTILOS GERAIS E VARIÁVEIS (Estilo mantido)      */
+        /* =================================================== */
+        :root {
+            --cor-azul-principal: #007bff;
+            --cor-vermelha-perigo: #dc3545; /* Cor para "Cancelar" */
+            --cor-cinza-secundario: #6c757d; /* Cor para "Remarcar" */
+            --cor-branca: #ffffff;
+            --cor-cinza-fundo: #f4f7f6;
+            --cor-cinza-fundo-item: #f9f9f9; /* Fundo do item da lista */
+            --cor-texto: #333;
+            --cor-borda-leve: #dbe2e9;
+            --sombra-leve: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-cinza-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Centraliza o card na tela. 
+           Usamos 'align-items: flex-start' para listas, 
+           para que o card comece do topo (não do meio) */
+        .body-centralizado {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha no topo */
+            min-height: calc(100vh - 40px);
+            padding-top: 40px; /* Um espaço do topo */
+        }
+        
+        /* =================================================== */
+        /* 2. ESTILOS DO "RETÂNGULO" (O Card de Lista)         */
+        /* =================================================== */
+
+        /* O "retângulo" branco (card) */
+        .card-lista {
+            background: var(--cor-branca);
+            box-shadow: var(--sombra-leve);
+            border-radius: 12px;
+            padding: 35px 40px;
+            width: 100%;
+            max-width: 650px; /* Mais largo para a lista */
+        }
+
+        /* Título "Minhas Consultas" */
+        .card-lista h2 {
+            color: var(--cor-azul-principal);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* --- A Lista de Consultas --- */
+        .lista-consultas {
+            list-style: none; /* Remove bolinhas */
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espaço entre os itens */
+        }
+
+        /* --- O Item da Consulta (Card dentro do Card) --- */
+        .consulta-item {
+            background-color: var(--cor-cinza-fundo-item);
+            border: 1px solid var(--cor-borda-leve);
+            border-radius: 10px;
+            padding: 20px;
+            
+            /* Flexbox para alinhar info e botões */
+            display: flex;
+            justify-content: space-between; /* Info na esquerda, botões na direita */
+            align-items: center;
+            flex-wrap: wrap; /* Permite quebrar em telas pequenas */
+            gap: 15px;
+        }
+
+        /* Informações da consulta (Especialidade, Médico, Data) */
+        .consulta-info {
+            display: flex;
+            flex-direction: column; /* Empilha as informações */
+            gap: 4px;
+        }
+
+        .consulta-info strong {
+            font-size: 1.15rem;
+            color: var(--cor-texto);
+        }
+        .consulta-info span {
+            color: #555;
+        }
+        .consulta-info small {
+            color: #777;
+            font-weight: 700;
+        }
+        
+        /* Div dos botões "Remarcar" e "Cancelar" */
+        .consulta-acoes {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0; /* Impede que os botões encolham */
+        }
+
+        /* --- Botões (Estilo mantido e expandido) --- */
+        .btn {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem; /* Botões menores para a lista */
+            padding: 8px 16px;
+            border: none;
+            border-radius: 50px; /* Arredondado */
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+        }
+
+        /* Botão "Remarcar" (Secundário) */
+        .btn-secondary {
+            background-color: #e9ecef;
+            color: #495057;
+            border: 1px solid #d6dbe0;
+        }
+        .btn-secondary:hover {
+            background-color: #d6dbe0;
+        }
+
+        /* Botão "Cancelar" (Perigo) */
+        .btn-danger {
+            background-color: var(--cor-vermelha-perigo);
+            color: var(--cor-branca);
+        }
+        .btn-danger:hover {
+            opacity: 0.85;
+        }
+
+        /* Estilo para consultas passadas (sem botões) */
+        .consulta-item.passada .consulta-info {
+            opacity: 0.7; /* Fica meio apagado */
+        }
+        .consulta-item.passada .consulta-info small {
+            color: var(--cor-cinza-secundario);
+        }
+
+    </style>
+</head>
+
+<body class="body-centralizado">
+
+    <main class="card-lista">
+        
+        <h2>Minhas Consultas</h2>
+        
+        <ul class="lista-consultas">
+            
+            <li class="consulta-item">
+                <div class="consulta-info">
+                    <strong>Cardiologia</strong>
+                    <span>Dr. Ana Silva</span>
+                    <small>17/11/2025 - 10:00</small>
+                </div>
+                
+                <div class="consulta-acoes">
+                    <a href="#" class="btn btn-secondary">Remarcar</a>
+                    <a href="#" class="btn btn-danger">Cancelar</a>
+                </div>
+            </li>
+            
+            <li class="consulta-item">
+                <div class="consulta-info">
+                    <strong>Ortopedia</strong>
+                    <span>Dr. Bruno Costa</span>
+                    <small>22/11/2025 - 14:30</small>
+                </div>
+                
+                <div class="consulta-acoes">
+                    <a href="#" class="btn btn-secondary">Remarcar</a>
+                    <a href="#" class="btn btn-danger">Cancelar</a>
+                </div>
+            </li>
+
+            <li class="consulta-item passada">
+                <div class="consulta-info">
+                    <strong>Clínico Geral</strong>
+                    <span>Dr. Carlos Lima</span>
+                    <small>05/10/2025 - 08:30 (Realizada)</small>
+                </div>
+                
+                <div class="consulta-acoes">
+                    </div>
+            </li>
+        </ul>
+
+    </main>
+
+</body>
+</html>

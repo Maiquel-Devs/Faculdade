@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificações - SmartClinic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =================================================== */
+        /* 1. ESTILOS GERAIS E VARIÁVEIS (Estilo mantido)      */
+        /* =================================================== */
+        :root {
+            --cor-azul-principal: #007bff;
+            
+            /* Cores de Notificação (Conforme solicitado) */
+            --cor-azul-alerta-fundo: #e6f2ff; /* Azul suave (Alertas / Remarcações) */
+            --cor-azul-alerta-texto: #0056b3;
+            --cor-verde-sucesso-fundo: #e9f7ef; /* Verde suave (Confirmações) */
+            --cor-verde-sucesso-texto: #28a745;
+            --cor-vermelha-fundo: #fdebee; /* Vermelho suave (Cancelamentos) */
+            --cor-vermelha-texto: #dc3545;
+
+            --cor-branca: #ffffff;
+            --cor-cinza-fundo: #f4f7f6;
+            --cor-texto: #333;
+            --cor-borda-leve: #dbe2e9;
+            --sombra-leve: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-cinza-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Centraliza o card na tela (começando do topo) */
+        .body-centralizado {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha no topo */
+            min-height: calc(100vh - 40px);
+            padding-top: 40px; /* Um espaço do topo */
+        }
+        
+        /* =================================================== */
+        /* 2. ESTILOS DO "RETÂNGULO" (Painel de Notificações)  */
+        /* =================================================== */
+
+        /* O "retângulo" branco (card) */
+        .card-painel {
+            background: var(--cor-branca);
+            box-shadow: var(--sombra-leve);
+            border-radius: 12px;
+            padding: 35px 40px;
+            width: 100%;
+            max-width: 700px; 
+        }
+
+        /* Título */
+        .card-painel h2 {
+            color: var(--cor-azul-principal);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* --- Lista de Notificações --- */
+        .notificacao-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espaço entre os itens */
+        }
+        
+        /* --- Item da Notificação (Card dentro do Card) --- */
+        .notificacao-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            border-radius: 10px;
+            border: 1px solid transparent; /* Borda sutil */
+        }
+        
+        /* Ícone (Emoji para protótipo) */
+        .notificacao-icone {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Texto (Título e Descrição) */
+        .notificacao-info {
+            flex-grow: 1; /* Ocupa o espaço do meio */
+        }
+
+        .notificacao-info strong {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .notificacao-info span {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Hora do envio */
+        .notificacao-tempo {
+            font-size: 0.85rem;
+            color: #777;
+            flex-shrink: 0;
+        }
+        
+        /* --- Estilos de Status (Cores) --- */
+
+        /* 1. Verde (Confirmação / Nova Marcação) */
+        .status-confirmacao {
+            background-color: var(--cor-verde-sucesso-fundo);
+            border-color: #c3e6cb;
+        }
+        .status-confirmacao .notificacao-icone,
+        .status-confirmacao .notificacao-info strong {
+            color: var(--cor-verde-sucesso-texto);
+        }
+
+        /* 2. Azul (Alerta / Alteração) */
+        .status-alerta {
+            background-color: var(--cor-azul-alerta-fundo);
+            border-color: #b8daff;
+        }
+        .status-alerta .notificacao-icone,
+        .status-alerta .notificacao-info strong {
+            color: var(--cor-azul-alerta-texto);
+        }
+
+        /* 3. Vermelho (Cancelamento) */
+        .status-cancelamento {
+            background-color: var(--cor-vermelha-fundo);
+            border-color: #f5c6cb;
+        }
+        .status-cancelamento .notificacao-icone,
+        .status-cancelamento .notificacao-info strong {
+            color: var(--cor-vermelha-texto);
+        }
+        
+    </style>
+</head>
+
+<body class="body-centralizado">
+
+    <main class="card-painel">
+        
+        <h2>Painel de Notificações</h2>
+        
+        <ul class="notificacao-lista">
+            
+            <li class="notificacao-item status-confirmacao">
+                <div class="notificacao-icone">✅</div>
+                <div class="notificacao-info">
+                    <strong>Nova Consulta</strong>
+                    <span>Paciente Joana M. agendou para Ter (18) às 10:00.</span>
+                </div>
+                <span class="notificacao-tempo">há 5 min</span>
+            </li>
+            
+            <li class="notificacao-item status-alerta">
+                <div class="notificacao-icone">🔄</div>
+                <div class="notificacao-info">
+                    <strong>Consulta Remarcada</strong>
+                    <span>Paciente Carlos E. remarcou de Seg (17) para Qua (19).</span>
+                </div>
+                <span class="notificacao-tempo">há 15 min</span>
+            </li>
+
+            <li class="notificacao-item status-cancelamento">
+                <div class="notificacao-icone">❌</div>
+                <div class="notificacao-info">
+                    <strong>Consulta Cancelada</strong>
+                    <span>Mariana B. (Seg, 09:30) cancelou o agendamento.</span>
+                </div>
+                <span class="notificacao-tempo">há 1 hora</span>
+            </li>
+
+            <li class="notificacao-item status-confirmacao">
+                <div class="notificacao-icone">✅</div>
+                <div class="notificacao-info">
+                    <strong>Nova Consulta</strong>
+                    <span>Paciente Roberto S. agendou para Qui (20) às 09:30.</span>
+                </div>
+                <span class="notificacao-tempo">há 2 horas</span>
+            </li>
+
+        </ul>
+
+    </main>
+
+</body>
+</html>

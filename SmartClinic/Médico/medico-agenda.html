@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Diária - SmartClinic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =================================================== */
+        /* 1. ESTILOS GERAIS E VARIÁVEIS (Estilo mantido)      */
+        /* =================================================== */
+        :root {
+            --cor-azul-principal: #007bff; /* Azul escuro (para contraste) */
+            --cor-branca: #ffffff;
+            --cor-cinza-fundo: #f4f7f6;
+            --cor-cinza-fundo-item: #fcfcfc; /* Quase branco */
+            --cor-texto: #333;
+            --cor-borda-leve: #eef2f7; /* Borda bem suave */
+            --sombra-leve: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-cinza-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Centraliza o card na tela (começando do topo) */
+        .body-centralizado {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha no topo */
+            min-height: calc(100vh - 40px);
+            padding-top: 40px; /* Um espaço do topo */
+        }
+        
+        /* =================================================== */
+        /* 2. ESTILOS DO "RETÂNGULO" (Painel da Agenda)        */
+        /* =================================================== */
+
+        /* O "retângulo" branco (card) */
+        .card-painel {
+            background: var(--cor-branca); /* Fundo branco */
+            box-shadow: var(--sombra-leve);
+            border-radius: 12px;
+            padding: 35px 40px;
+            width: 100%;
+            max-width: 700px; 
+        }
+
+        /* Título (em azul escuro) */
+        .card-painel h2 {
+            color: var(--cor-azul-principal);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* --- Lista de Consultas do Dia --- */
+        .agenda-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1px; /* Cria um efeito de linhas separadoras */
+            background-color: var(--cor-borda-leve); /* Cor da linha */
+            border: 1px solid var(--cor-borda-leve);
+            border-radius: 10px;
+            overflow: hidden; /* Para o radius funcionar */
+        }
+        
+        /* --- Item da Consulta (Linha) --- */
+        .agenda-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 20px;
+            background-color: var(--cor-cinza-fundo-item);
+        }
+        
+        /* Estilo de linha alternada (zebrado) */
+        .agenda-item:nth-child(even) {
+            background-color: var(--cor-branca);
+        }
+
+        /* 1. Horário (com destaque em azul) */
+        .agenda-hora {
+            flex-basis: 100px; /* Largura fixa */
+            flex-shrink: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--cor-azul-principal); /* Azul escuro */
+            text-align: right;
+        }
+
+        /* 2. Informações do Paciente */
+        .agenda-info {
+            flex-grow: 1; /* Ocupa o espaço do meio */
+            display: flex;
+            flex-direction: column;
+            line-height: 1.4;
+        }
+
+        .agenda-info .paciente-nome {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--cor-texto);
+        }
+
+        .agenda-info .paciente-especialidade {
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        /* Simulação de consulta "Em Andamento" */
+        .agenda-item.em-andamento {
+            background-color: #e6f2ff; /* Fundo azul claro */
+            border-left: 5px solid var(--cor-azul-principal);
+            padding-left: 15px;
+        }
+        
+        /* Simulação de consulta "Concluída" */
+        .agenda-item.concluida {
+            opacity: 0.6;
+        }
+        .agenda-item.concluida .agenda-hora {
+            color: #555;
+        }
+
+    </style>
+</head>
+
+<body class="body-centralizado">
+
+    <main class="card-painel">
+        
+        <h2>Agenda Diária - 16/11/2025</h2>
+        
+        <ul class="agenda-lista">
+            
+            <li class="agenda-item concluida">
+                <div class="agenda-hora">09:00</div>
+                <div class="agenda-info">
+                    <span class="paciente-nome">Carlos Eduardo</span>
+                    <span class="paciente-especialidade">Cardiologia (Retorno)</span>
+                </div>
+            </li>
+            
+            <li class="agenda-item em-andamento">
+                <div class="agenda-hora">09:30</div>
+                <div class="agenda-info">
+                    <span class="paciente-nome">Mariana Borges</span>
+                    <span class="paciente-especialidade">Ortopedia (Primeira consulta)</span>
+                </div>
+            </li>
+
+            <li class="agenda-item">
+                <div class="agenda-hora">10:00</div>
+                <div class="agenda-info">
+                    <span class="paciente-nome">Felipe Andrade</span>
+                    <span class="paciente-especialidade">Cardiologia (Exames)</span>
+                </div>
+            </li>
+            
+            <li class="agenda-item">
+                <div class="agenda-hora">10:30</div>
+                <div class="agenda-info">
+                    <span class="paciente-nome">Roberto Silva</span>
+                    <span class="paciente-especialidade">Cardiologia (Rotina)</span>
+                </div>
+            </li>
+            
+            <li class="agenda-item">
+                <div class="agenda-hora">11:00</div>
+                <div class="agenda-info">
+                    <span class="paciente-nome">Ana Julia Lima</span>
+                    <span class="paciente-especialidade">Ortopedia (Pós-operatório)</span>
+                </div>
+            </li>
+
+        </ul>
+
+    </main>
+
+</body>
+</html>

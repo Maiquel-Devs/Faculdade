@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Médico - SmartClinic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =================================================== */
+        /* 1. ESTILOS GERAIS E VARIÁVEIS (Estilo mantido)      */
+        /* =================================================== */
+        :root {
+            --cor-azul-principal: #007bff;
+            --cor-azul-claro-bg: #e6f2ff; 
+            --cor-branca: #ffffff;
+            --cor-cinza-fundo: #f4f7f6;
+            --cor-texto: #333;
+            --cor-borda-leve: #dbe2e9;
+            --sombra-leve: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-cinza-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Centraliza o card na tela (começando do topo) */
+        .body-centralizado {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha no topo */
+            min-height: calc(100vh - 40px);
+            padding-top: 40px; /* Um espaço do topo */
+        }
+        
+        /* =================================================== */
+        /* 2. ESTILOS DO "RETÂNGULO" (Card do Formulário)      */
+        /* =================================================== */
+
+        /* O "retângulo" branco (card) */
+        .card-formularia {
+            background: var(--cor-branca);
+            box-shadow: var(--sombra-leve);
+            border-radius: 12px;
+            padding: 35px 40px;
+            width: 100%;
+            max-width: 550px; /* Um pouco mais largo */
+        }
+
+        /* Título "Cadastrar Médico" */
+        .card-formularia h2 {
+            color: var(--cor-azul-principal);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* Campos de formulário (Label + Input/Select) */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left; 
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        /* Estilo unificado para inputs e selects */
+        .form-group input[type="text"],
+        .form-group input[type="time"],
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 1px solid var(--cor-borda-leve);
+            border-radius: 8px;
+            box-sizing: border-box; 
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-branca);
+        }
+        
+        /* Seta customizada para o <select> */
+        .form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M7.41%208.59L12%2013.17l4.59-4.58L18%2010l-6%206-6-6%201.41-1.41z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+        }
+
+        /* --- Estilos para Horários de Atendimento --- */
+        
+        /* Grupo de checkboxes (Seg, Ter, Qua...) */
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 10px;
+            background: var(--cor-cinza-fundo);
+            border-radius: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+        
+        /* Grupo de inputs de tempo (Início e Fim) */
+        .time-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Duas colunas */
+            gap: 15px;
+        }
+
+        /* --- Botão Principal --- */
+        .btn {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px; /* Arredondado */
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--cor-azul-principal);
+            color: var(--cor-branca);
+        }
+        
+        .card-formularia .btn-primary {
+            width: 100%;
+            margin-top: 15px; 
+            padding: 14px; /* Botão principal mais destacado */
+        }
+    </style>
+</head>
+
+<body class="body-centralizado">
+
+    <main class="card-formularia">
+        
+        <h2>Cadastrar Médico</h2>
+        
+        <form action="#" method="POST">
+            
+            <div class="form-group">
+                <label for="nome-medico">Nome do Médico</label>
+                <input type="text" id="nome-medico" name="nome-medico" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="especialidade">Especialidade</label>
+                <select id="especialidade" name="especialidade" required>
+                    <option value="">Selecione a especialidade</option>
+                    <option value="clinico">Clínico Geral</option>
+                    <option value="cardio">Cardiologia</option>
+                    <option value="dermato">Dermatologia</option>
+                    <option value="orto">Ortopedia</option>
+                    <option value="pediatra">Pediatria</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Dias de Atendimento</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dia-seg" name="dias[]" value="seg">
+                        <label for="dia-seg">Segunda</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dia-ter" name="dias[]" value="ter">
+                        <label for="dia-ter">Terça</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dia-qua" name="dias[]" value="qua">
+                        <label for="dia-qua">Quarta</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dia-qui" name="dias[]" value="qui">
+                        <label for="dia-qui">Quinta</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="dia-sex" name="dias[]" value="sex">
+                        <label for="dia-sex">Sexta</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-group">
+                <div class="form-group">
+                    <label for="hora-inicio">Horário de Início</label>
+                    <input type="time" id="hora-inicio" name="hora-inicio" value="08:00">
+                </div>
+                <div class="form-group">
+                    <label for="hora-fim">Horário de Fim</label>
+                    <input type="time" id="hora-fim" name="hora-fim" value="18:00">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Adicionar Médico</button>
+        </form>
+
+    </main>
+
+</body>
+</html>

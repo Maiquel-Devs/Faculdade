@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Agenda - SmartClinic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =================================================== */
+        /* 1. ESTILOS GERAIS E VARIÁVEIS (Estilo mantido)      */
+        /* =================================================== */
+        :root {
+            --cor-azul-principal: #007bff;
+            --cor-verde-sucesso: #28a745; /* Para "Disponível" */
+            --cor-branca: #ffffff;
+            --cor-cinza-fundo: #f4f7f6;
+            --cor-cinza-texto: #6c757d; /* Para "Ocupado" */
+            --cor-texto: #333;
+            --cor-borda-leve: #dbe2e9;
+            --sombra-leve: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-cinza-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Centraliza o card na tela (começando do topo) */
+        .body-centralizado {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha no topo */
+            min-height: calc(100vh - 40px);
+            padding-top: 40px; /* Um espaço do topo */
+        }
+        
+        /* =================================================== */
+        /* 2. ESTILOS DO "RETÂNGULO" (Card de Visualização)    */
+        /* =================================================== */
+
+        /* O "retângulo" branco (card) */
+        .card-painel {
+            background: var(--cor-branca);
+            box-shadow: var(--sombra-leve);
+            border-radius: 12px;
+            padding: 35px 40px;
+            width: 100%;
+            max-width: 800px; /* Mais largo para a agenda */
+        }
+
+        /* Título */
+        .card-painel h2 {
+            color: var(--cor-azul-principal);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* --- Filtros da Agenda (Médico e Data) --- */
+        .filtros-agenda {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* 2 colunas */
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--cor-cinza-fundo);
+        }
+        
+        .form-group {
+            margin: 0;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        .form-group input[type="text"],
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 1px solid var(--cor-borda-leve);
+            border-radius: 8px;
+            box-sizing: border-box; 
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-branca);
+        }
+        
+        .form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M7.41%208.59L12%2013.17l4.59-4.58L18%2010l-6%206-6-6%201.41-1.41z%22%2F%3E%3C%Ssvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+        }
+
+        /* --- Bloco da Agenda do Médico --- */
+        .agenda-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Espaço entre os médicos */
+        }
+        
+        .medico-agenda-bloco h3 {
+            font-size: 1.3rem;
+            color: var(--cor-texto);
+            margin: 0 0 15px 0;
+        }
+
+        /* Lista de horários */
+        .agenda-horarios {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        /* Item do horário */
+        .horario-item {
+            padding: 12px 15px;
+            border: 1px solid var(--cor-borda-leve);
+            background: var(--cor-cinza-fundo);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .horario-item .hora {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--cor-texto);
+        }
+        
+        /* Status (Disponível / Ocupado) */
+        .status {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .status-disponivel {
+            color: var(--cor-verde-sucesso);
+        }
+        
+        .status-ocupado {
+            color: var(--cor-cinza-texto);
+            font-size: 0.85rem; /* Menor para caber o nome */
+        }
+        
+    </style>
+</head>
+
+<body class="body-centralizado">
+
+    <main class="card-painel">
+        
+        <h2>Consulta de Agenda Médica</h2>
+        
+        <section class="filtros-agenda">
+            <div class="form-group">
+                <label for="medico">Filtrar por Médico</label>
+                <select id="medico" name="medico">
+                    <option value="todos">Todos os Médicos</option>
+                    <option value="ana">Dr. Ana Silva (Cardiologia)</option>
+                    <option value="bruno">Dr. Bruno Costa (Ortopedia)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="data">Data</label>
+                <input type="text" id="data" name="data" value="16/11/2025">
+            </div>
+        </section>
+        
+        <section class="agenda-container">
+            
+            <div class="medico-agenda-bloco">
+                <h3>Dr. Ana Silva (Cardiologia)</h3>
+                <ul class="agenda-horarios">
+                    <li class="horario-item">
+                        <span class="hora">09:00</span>
+                        <span class="status status-ocupado">Carlos E.</span>
+                    </li>
+                    <li class="horario-item">
+                        <span class="hora">09:30</span>
+                        <span class="status status-disponivel">Disponível</span>
+                    </li>
+                    <li class="horario-item">
+                        <span class="hora">10:00</span>
+                        <span class="status status-ocupado">Felipe A.</span>
+                    </li>
+                    <li class="horario-item">
+                        <span class="hora">10:30</span>
+                        <span class="status status-disponivel">Disponível</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="medico-agenda-bloco">
+                <h3>Dr. Bruno Costa (Ortopedia)</h3>
+                <ul class="agenda-horarios">
+                    <li class="horario-item">
+                        <span class="hora">09:30</span>
+                        <span class="status status-ocupado">Mariana B.</span>
+                    </li>
+                    <li class="horario-item">
+                        <span class="hora">10:00</span>
+                        <span class="status status-disponivel">Disponível</span>
+                    </li>
+                    <li class="horario-item">
+                        <span class="hora">10:30</span>
+                        <span class="status status-disponivel">Disponível</span>
+                    </li>
+                </ul>
+            </div>
+            
+        </section>
+
+    </main>
+
+</body>
+</html>

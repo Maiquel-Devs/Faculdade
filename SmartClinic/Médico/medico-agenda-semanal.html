@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Semanal - SmartClinic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =================================================== */
+        /* 1. ESTILOS GERAIS E VARIÁVEIS (Estilo mantido)      */
+        /* =================================================== */
+        :root {
+            --cor-azul-principal: #007bff;
+            --cor-azul-claro-bg: #e6f2ff; /* Fundo do slot ocupado */
+            --cor-branca: #ffffff;
+            --cor-cinza-fundo: #f4f7f6;   /* Fundo da interface */
+            --cor-cinza-slot-livre: #fafafa; /* Fundo do slot livre */
+            --cor-texto: #333;
+            --cor-borda-leve: #eef2f7;
+            --sombra-leve: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-cinza-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Centraliza o card na tela (começando do topo) */
+        .body-centralizado {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha no topo */
+            min-height: calc(100vh - 40px);
+            padding-top: 40px; /* Um espaço do topo */
+        }
+        
+        /* =================================================== */
+        /* 2. ESTILOS DO "RETÂNGULO" (Painel da Agenda Semanal)*/
+        /* =================================================== */
+
+        /* O "retângulo" branco (card) */
+        .card-painel {
+            background: var(--cor-branca); /* Interface clara */
+            box-shadow: var(--sombra-leve);
+            border-radius: 12px;
+            padding: 35px 40px;
+            width: 100%;
+            max-width: 1100px; /* Bem largo para a semana */
+        }
+
+        /* Título */
+        .card-painel h2 {
+            color: var(--cor-azul-principal);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* --- Navegação da Semana --- */
+        .semana-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 10px;
+            background: var(--cor-cinza-fundo);
+            border-radius: 8px;
+        }
+        .semana-nav strong {
+            font-size: 1.2rem;
+            color: var(--cor-azul-principal);
+        }
+        .btn-nav {
+            font-weight: 700;
+            color: var(--cor-azul-principal);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+        .btn-nav:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Container da Tabela (para rolagem horizontal) */
+        .tabela-container {
+            overflow-x: auto;
+        }
+
+        /* --- Tabela / Calendário Semanal --- */
+        .agenda-semanal {
+            width: 100%;
+            border-collapse: collapse; /* Bordas limpas */
+            table-layout: fixed; /* Colunas com largura igual */
+            border: 1px solid var(--cor-borda-leve);
+        }
+
+        /* Células da tabela (th e td) */
+        .agenda-semanal th,
+        .agenda-semanal td {
+            border: 1px solid var(--cor-borda-leve);
+            padding: 10px;
+            height: 70px; /* Altura de cada slot */
+            vertical-align: top;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        /* Cabeçalho (Dias da Semana) */
+        .agenda-semanal thead th {
+            background-color: var(--cor-cinza-fundo);
+            color: var(--cor-texto);
+            font-weight: 700;
+            text-align: center;
+            padding: 15px 10px;
+        }
+        
+        /* Cabeçalho (Horários) */
+        .agenda-semanal tbody th {
+            background-color: var(--cor-cinza-fundo);
+            font-weight: 700;
+            text-align: center;
+            vertical-align: middle;
+            width: 100px; /* Largura da coluna de horário */
+            font-size: 1rem;
+        }
+        
+        /* --- Cores para Horários Livres e Ocupados --- */
+
+        /* Slot "Livre" (Cinza claro) */
+        .slot-livre {
+            background-color: var(--cor-cinza-slot-livre);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .slot-livre:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Slot "Ocupado" (Azul) */
+        .slot-ocupado {
+            background-color: var(--cor-azul-claro-bg);
+            color: var(--cor-azul-principal);
+            border-left: 4px solid var(--cor-azul-principal); /* Destaque */
+            font-weight: 700;
+        }
+        .slot-ocupado span {
+            font-size: 0.8rem;
+            font-weight: 400;
+            display: block;
+            color: #0056b3;
+        }
+
+    </style>
+</head>
+
+<body class="body-centralizado">
+
+    <main class="card-painel">
+        
+        <h2>Agenda Semanal</h2>
+        
+        <div class="semana-nav">
+            <a href="#" class="btn-nav">&lt; Semana Anterior</a>
+            <strong>17/11/2025 a 21/11/2025</strong>
+            <a href="#" class="btn-nav">Próxima Semana &gt;</a>
+        </div>
+
+        <div class="tabela-container">
+            <table class="agenda-semanal">
+                <thead>
+                    <tr>
+                        <th>Horário</th>
+                        <th>Segunda (17)</th>
+                        <th>Terça (18)</th>
+                        <th>Quarta (19)</th>
+                        <th>Quinta (20)</th>
+                        <th>Sexta (21)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>09:00</th>
+                        <td class="slot-ocupado">Carlos E. <span>(Cardio)</span></td>
+                        <td class="slot-livre"></td>
+                        <td class="slot-ocupado">Felipe A. <span>(Cardio)</span></td>
+                        <td class="slot-livre"></td>
+                        <td class="slot-ocupado">Ana Julia L. <span>(Ortop.)</span></td>
+                    </tr>
+                    <tr>
+                        <th>09:30</th>
+                        <td class="slot-ocupado">Mariana B. <span>(Ortop.)</span></td>
+                        <td class="slot-livre"></td>
+                        <td class="slot-livre"></td>
+                        <td class="slot-ocupado">Roberto S. <span>(Cardio)</span></td>
+                        <td class="slot-livre"></td>
+                    </tr>
+                    <tr>
+                        <th>10:00</th>
+                        <td class="slot-livre"></td>
+                        <td class="slot-ocupado">Joana M. <span>(Cardio)</span></td>
+                        <td class="slot-ocupado">Marcos P. <span>(Ortop.)</span></td>
+                        <td class="slot-livre"></td>
+                        <td class="slot-ocupado">Lucas G. <span>(Cardio)</span></td>
+                    </tr>
+                    <tr>
+                        <th>10:30</th>
+                        <td class="slot-livre"></td>
+                        <td class="slot-livre"></td>
+                        <td class="slot-livre"></td>
+                        <td class="slot-livre"></td>
+                        <td class="slot-livre"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> </main>
+
+</body>
+</html>

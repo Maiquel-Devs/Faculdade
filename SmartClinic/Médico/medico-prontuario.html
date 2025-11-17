@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios Médicos - SmartClinic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =================================================== */
+        /* 1. ESTILOS GERAIS E VARIÁVEIS (Estilo mantido)      */
+        /* =================================================== */
+        :root {
+            --cor-azul-principal: #007bff; /* Azul escuro */
+            --cor-azul-claro-fundo: #e6f2ff; /* Azul claro */
+            --cor-vermelha-fundo: #fdebee; /* Alerta de Alergia */
+            --cor-vermelha-texto: #dc3545;
+            --cor-amarela-fundo: #fff8e1; /* Alerta de Condição */
+            --cor-amarela-texto: #e6a800;
+            
+            --cor-branca: #ffffff;
+            --cor-cinza-fundo: #f4f7f6;
+            --cor-cinza-neutro: #6c757d; 
+            --cor-texto: #333;
+            --cor-borda-leve: #dbe2e9;
+            --sombra-leve: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-cinza-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Centraliza o card na tela (começando do topo) */
+        .body-centralizado {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha no topo */
+            min-height: calc(100vh - 40px);
+            padding-top: 40px; /* Um espaço do topo */
+        }
+        
+        /* =================================================== */
+        /* 2. ESTILOS DO "RETÂNGULO" (Painel de Prontuários)   */
+        /* =================================================== */
+
+        /* O "retângulo" branco (card) */
+        .card-painel {
+            background: var(--cor-branca); /* Fundo branco */
+            box-shadow: var(--sombra-leve);
+            border-radius: 12px;
+            padding: 35px 40px;
+            width: 100%;
+            max-width: 850px; 
+        }
+
+        /* Título */
+        .card-painel h2 {
+            color: var(--cor-azul-principal);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        /* --- 1. Filtros e Ações (Exportar/Imprimir) --- */
+        .filtro-container {
+            display: flex;
+            flex-wrap: wrap; /* Permite quebrar em telas pequenas */
+            justify-content: space-between;
+            align-items: flex-end; /* Alinha input e botões */
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--cor-cinza-fundo);
+        }
+        
+        .form-group {
+            flex-grow: 1; /* Campo de busca ocupa mais espaço */
+            min-width: 250px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 700;,
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 6px;
+        }
+        
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 1px solid var(--cor-borda-leve);
+            border-radius: 8px;
+            box-sizing: border-box; 
+        }
+        
+        .acoes-container {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0; /* Impede que botões encolham */
+        }
+        
+        .btn {
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px; /* Arredondado */
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        /* Botão Secundário (Imprimir/Exportar) */
+        .btn-secondary {
+            background-color: #e9ecef;
+            color: #495057;
+            border: 1px solid #d6dbe0;
+        }
+        .btn-secondary:hover {
+            background-color: #d6dbe0;
+        }
+
+        /* --- 2. Relatório do Paciente (Resultado) --- */
+        .paciente-header {
+            margin-bottom: 20px;
+        }
+        .paciente-header h3 {
+            color: var(--cor-azul-principal); /* Destaque azul */
+            font-size: 1.6rem;
+            margin: 0 0 5px 0;
+        }
+        .paciente-header span {
+            color: var(--cor-cinza-neutro);
+            font-size: 1rem;
+        }
+        
+        /* Título da Seção (Alergias, Histórico...) */
+        .secao-titulo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--cor-texto);
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        /* --- 2a. Dados Clínicos (Alergias, Condições) --- */
+        .dados-clinicos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .dado-item {
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+        
+        /* Destaque para Alergia (Vermelho) */
+        .dado-item.alergia {
+            background-color: var(--cor-vermelha-fundo);
+            color: var(--cor-vermelha-texto);
+            border-color: #f5c6cb;
+        }
+        
+        /* Destaque para Condição (Amarelo) */
+        .dado-item.condicao {
+            background-color: var(--cor-amarela-fundo);
+            color: var(--cor-amarela-texto);
+            border-color: #ffeeba;
+        }
+        
+        /* --- 2b. Histórico de Consultas (Tabela) --- */
+        .tabela-historico {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .tabela-historico th,
+        .tabela-historico td {
+            padding: 12px 15px;
+            border: 1px solid var(--cor-borda-leve);
+            text-align: left;
+        }
+        .tabela-historico th {
+            background-color: var(--cor-cinza-fundo);
+        }
+        
+        /* --- 2c. Observações Médicas --- */
+        .observacoes {
+            background-color: var(--cor-cinza-fundo);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 5px solid var(--cor-azul-claro-fundo);
+        }
+        .observacoes p {
+            margin: 0;
+            line-height: 1.7;
+        }
+
+    </style>
+</head>
+
+<body class="body-centralizado">
+
+    <main class="card-painel">
+        
+        <h2>Relatórios Médicos (Prontuários)</h2>
+
+        <section class="filtro-container">
+            <div class="form-group">
+                <label for="busca-paciente">Buscar Paciente</label>
+                <input type="text" id="busca-paciente" placeholder="Digite o nome ou CPF do paciente...">
+            </div>
+            
+            <div class="acoes-container">
+                <a href="#" class="btn btn-secondary">Imprimir Relatório</a>
+                <a href="#" class="btn btn-secondary">Exportar (PDF)</a>
+            </div>
+        </section>
+
+        <section class="relatorio-paciente">
+            
+            <div class="paciente-header">
+                <h3>Carlos Eduardo da Silva</h3>
+                <span>CPF: 123.456.789-00 | Nasc: 15/05/1980 (45 anos)</span>
+            </div>
+
+            <h4 class="secao-titulo">Dados Clínicos Essenciais</h4>
+            <div class="dados-clinicos">
+                <div class="dado-item alergia"><strong>Alergia:</strong> Penicilina</div>
+                <div class="dado-item condicao"><strong>Condição:</strong> Hipertensão</div>
+                <div class="dado-item condicao"><strong>Condição:</strong> Diabetes Tipo 2</div>
+            </div>
+
+            <h4 class="secao-titulo">Histórico de Consultas</h4>
+            <table class="tabela-historico">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Médico</th>
+                        <th>Motivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>16/11/2025</td>
+                        <td>Dr. Ana Silva</td>
+                        <td>Cardiologia (Retorno)</td>
+                    </tr>
+                    <tr>
+                        <td>05/10/2025</td>
+                        <td>Dr. Ana Silva</td>
+                        <td>Cardiologia (Exames de rotina)</td>
+                    </tr>
+                    <tr>
+                        <td>12/06/2025</td>
+                        <td>Dr. Ricardo Lima</td>
+                        <td>Clínico Geral (Check-up)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4 class="secao-titulo">Observações Médicas Recentes</h4>
+            <div class="observacoes">
+                <p>
+                    <strong>Dr. Ana Silva (16/11/2025):</strong> Paciente relata bom controle da pressão arterial com a medicação atual (Losartana 50mg). Exames de sangue normalizados. Manter medicação e retornar em 3 meses.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
