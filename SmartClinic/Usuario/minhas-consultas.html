@@ -32,15 +32,14 @@
             box-sizing: border-box;
         }
 
-        /* Centraliza o card na tela. 
-           Usamos 'align-items: flex-start' para listas, 
-           para que o card comece do topo (não do meio) */
+        /* Centraliza o card na tela (começando do topo) */
         .body-centralizado {
             display: flex;
             justify-content: center;
             align-items: flex-start; /* Alinha no topo */
             min-height: calc(100vh - 40px);
-            padding-top: 40px; /* Um espaço do topo */
+            /* ALTERAÇÃO 1: Espaço do topo */
+            padding-top: 5vh; 
         }
         
         /* =================================================== */
@@ -52,15 +51,18 @@
             background: var(--cor-branca);
             box-shadow: var(--sombra-leve);
             border-radius: 12px;
-            padding: 35px 40px;
+            /* ALTERAÇÃO 2: Padding lateral menor */
+            padding: 35px 25px; 
             width: 100%;
-            max-width: 650px; /* Mais largo para a lista */
+            /* ALTERAÇÃO 3: Largura máxima de celular */
+            max-width: 390px; 
         }
 
         /* Título "Minhas Consultas" */
         .card-lista h2 {
             color: var(--cor-azul-principal);
-            font-size: 1.8rem;
+            /* ALTERAÇÃO 4: Título um pouco menor */
+            font-size: 1.6rem; 
             margin-top: 0;
             margin-bottom: 25px;
             text-align: center;
@@ -81,13 +83,13 @@
             background-color: var(--cor-cinza-fundo-item);
             border: 1px solid var(--cor-borda-leve);
             border-radius: 10px;
-            padding: 20px;
+            /* ALTERAÇÃO 5: Padding interno menor */
+            padding: 15px;
             
-            /* Flexbox para alinhar info e botões */
+            /* ALTERAÇÃO 6: Empilha o conteúdo verticalmente */
             display: flex;
-            justify-content: space-between; /* Info na esquerda, botões na direita */
-            align-items: center;
-            flex-wrap: wrap; /* Permite quebrar em telas pequenas */
+            flex-direction: column; /* Empilha */
+            align-items: stretch; /* Ocupa 100% da largura */
             gap: 15px;
         }
 
@@ -99,7 +101,8 @@
         }
 
         .consulta-info strong {
-            font-size: 1.15rem;
+            /* ALTERAÇÃO 7: Fonte um pouco menor */
+            font-size: 1.1rem; 
             color: var(--cor-texto);
         }
         .consulta-info span {
@@ -114,15 +117,17 @@
         .consulta-acoes {
             display: flex;
             gap: 10px;
-            flex-shrink: 0; /* Impede que os botões encolham */
+            /* ALTERAÇÃO 8: Alinha botões à direita */
+            justify-content: flex-end; 
         }
 
         /* --- Botões (Estilo mantido e expandido) --- */
         .btn {
             font-family: 'Roboto', sans-serif;
             font-weight: 700;
-            font-size: 0.9rem; /* Botões menores para a lista */
-            padding: 8px 16px;
+            font-size: 0.9rem; 
+            /* ALTERAÇÃO 9: Botões mais "tocáveis" */
+            padding: 10px 20px; 
             border: none;
             border-radius: 50px; /* Arredondado */
             cursor: pointer;
@@ -152,6 +157,10 @@
         /* Estilo para consultas passadas (sem botões) */
         .consulta-item.passada .consulta-info {
             opacity: 0.7; /* Fica meio apagado */
+        }
+        /* ALTERAÇÃO 10: Esconde div de ações se estiver vazia */
+        .consulta-item.passada .consulta-acoes:empty {
+            display: none;
         }
         .consulta-item.passada .consulta-info small {
             color: var(--cor-cinza-secundario);

@@ -38,25 +38,31 @@
         .body-centralizado {
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: calc(100vh - 40px); 
+            /* ALTERAÇÃO 1: Alinha no topo, não no centro */
+            align-items: flex-start; 
+            min-height: calc(100vh - 40px);
+            /* ALTERAÇÃO 2: Adiciona espaço do topo */
+            padding-top: 5vh; 
         }
 
         /* O "retângulo" branco (card) */
-        .card-formularia { /* Usando um nome mais genérico */
+        .card-formularia { 
             background: var(--cor-branca);
             box-shadow: var(--sombra-leve);
             border-radius: 12px;
-            padding: 35px 40px;
+            /* ALTERAÇÃO 3: Padding lateral menor */
+            padding: 35px 25px; 
             width: 100%;
-            max-width: 480px; /* Um pouco mais largo para o agendamento */
+            /* ALTERAÇÃO 4: Largura máxima de celular */
+            max-width: 390px; 
             text-align: center; 
         }
 
         /* O "Cabeçalho azul" é este título */
         .card-formularia h2 {
             color: var(--cor-azul-principal);
-            font-size: 1.8rem;
+            /* ALTERAÇÃO 5: Título um pouco menor */
+            font-size: 1.6rem; 
             margin-top: 0;
             margin-bottom: 25px;
         }
@@ -79,7 +85,8 @@
         .form-group input[type="text"],
         .form-group select {
             width: 100%;
-            padding: 12px 15px;
+            /* ALTERAÇÃO 6: Mais alto, mais "tocável" */
+            padding: 14px 15px; 
             font-size: 1rem;
             border: 1px solid var(--cor-borda-leve);
             border-radius: 8px;
@@ -110,7 +117,8 @@
             background-color: var(--cor-azul-claro-bg); /* Fundo azul-claro */
             color: var(--cor-azul-principal); /* Texto azul */
             border: 1px solid var(--cor-borda-leve);
-            padding: 10px;
+            /* ALTERAÇÃO 7: Botão de horário mais "tocável" */
+            padding: 12px 10px; 
             font-size: 0.9rem;
             font-weight: 700;
             border-radius: 8px;
@@ -129,7 +137,6 @@
             font-family: 'Roboto', sans-serif;
             font-weight: 700;
             font-size: 1rem;
-            padding: 12px 24px;
             border: none;
             border-radius: 50px; /* Arredondado */
             cursor: pointer;
@@ -138,6 +145,8 @@
         .btn-primary {
             background-color: var(--cor-azul-principal);
             color: var(--cor-branca);
+            /* ALTERAÇÃO 8: Botão principal mais "tocável" */
+            padding: 14px 24px;
         }
         
         .card-formularia .btn-primary {

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Questionário SmartClinic - SBC</title>
+<style>
+  body, html {
+    margin: 40px 60px;
+    padding: 0;
+    font-family: "Times New Roman", Times, serif;
+    background: white;
+    color: black;
+  }
+  .container {
+    max-width: 900px;
+    margin: auto;
+  }
+  h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  p.intro {
+    font-size: 1rem;
+    text-align: justify;
+    margin-bottom: 2rem;
+  }
+  .questionnaire-section {
+    margin-bottom: 2rem;
+  }
+  ol {
+    padding-left: 1.5rem;
+    font-size: 1rem;
+  }
+  ol li {
+    margin-bottom: 1rem;
+  }
+  .options {
+    margin-left: 2rem;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  .options p {
+    margin: 0.3rem 0;
+  }
+  .checkbox-symbol {
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+
+  /* Observação */
+  .observation {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .observation h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+    text-align: left;
+  }
+  .observation p {
+    font-size: 1rem;
+    text-align: justify;
+    line-height: 1.5;
+    margin-bottom: 0.6rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Questionário Aplicado aos Usuários do Sistema SmartClinic</h2>
+    <p class="intro">
+      O questionário foi elaborado com o objetivo de identificar preferências, dificuldades e necessidades dos usuários em relação ao processo de agendamento de consultas médicas. Ele foi aplicado ficticiamente a três grupos de stakeholders: pacientes, recepcionistas e médicos, a fim de compreender melhor as expectativas de cada perfil.
+    </p>
+
+    <!-- Pacientes -->
+    <div class="questionnaire-section">
+      <h3>📌 Questionário – Pacientes</h3>
+      <ol>
+        <li>
+          Você costuma agendar consultas de que forma?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Online</p>
+            <p><span class="checkbox-symbol">( )</span> Presencialmente</p>
+            <p><span class="checkbox-symbol">( )</span> Por telefone</p>
+          </div>
+        </li>
+        <li>
+          Você gostaria de realizar todo o processo de agendamento pela internet?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Sim</p>
+            <p><span class="checkbox-symbol">( )</span> Não</p>
+            <p><span class="checkbox-symbol">( )</span> Talvez</p>
+          </div>
+        </li>
+        <li>
+          Qual recurso é mais importante para você em um sistema de agendamento?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Ver horários disponíveis com facilidade</p>
+            <p><span class="checkbox-symbol">(X)</span> Receber lembretes automáticos</p>
+            <p><span class="checkbox-symbol">(X)</span> Poder remarcar/cancelar sem precisar ligar</p>
+            <p><span class="checkbox-symbol">( )</span> Interface simples e rápida</p>
+          </div>
+        </li>
+        <li>
+          Você considera importante receber uma notificação de confirmação da consulta?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Sim</p>
+            <p><span class="checkbox-symbol">( )</span> Não</p>
+          </div>
+        </li>
+        <li>
+          Você já esqueceu consultas por falta de lembrete?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Sim</p>
+            <p><span class="checkbox-symbol">( )</span> Não</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Recepcionistas -->
+    <div class="questionnaire-section">
+      <h3>📌 Questionário – Recepcionistas</h3>
+      <ol>
+        <li>
+          Quais dificuldades você enfrenta no processo atual de agendamentos?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Conflitos de horário</p>
+            <p><span class="checkbox-symbol">(X)</span> Muitas ligações</p>
+            <p><span class="checkbox-symbol">(X)</span> Comunicação com médicos</p>
+            <p><span class="checkbox-symbol">( )</span> Falta de organização</p>
+            <p><span class="checkbox-symbol">( )</span> Outro: ________________________</p>
+          </div>
+        </li>
+        <li>
+          Você considera útil um sistema que atualiza automaticamente a agenda dos médicos?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Sim</p>
+            <p><span class="checkbox-symbol">( )</span> Não</p>
+          </div>
+        </li>
+        <li>
+          Como um sistema poderia facilitar seu trabalho?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Cadastro simplificado de médicos</p>
+            <p><span class="checkbox-symbol">(X)</span> Edição rápida de consultas</p>
+            <p><span class="checkbox-symbol">(X)</span> Cancelamentos e remarcações automatizadas</p>
+            <p><span class="checkbox-symbol">(X)</span> Notificações para pacientes</p>
+          </div>
+        </li>
+        <li>
+          O envio automático de lembretes para pacientes ajudaria a reduzir faltas?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Sim</p>
+            <p><span class="checkbox-symbol">( )</span> Não</p>
+          </div>
+        </li>
+        <li>
+          Você prefere uma interface mais simples ou mais completa?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Simples e objetiva</p>
+            <p><span class="checkbox-symbol">( )</span> Completa, com mais detalhes</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Médicos -->
+    <div class="questionnaire-section">
+      <h3>📌 Questionário – Médico</h3>
+      <ol>
+        <li>
+          Como você gerencia sua agenda atualmente?
+          <div class="options">
+            <p><span class="checkbox-symbol">( )</span> Manualmente</p>
+            <p><span class="checkbox-symbol">(X)</span> Com agendas eletrônicas</p>
+            <p><span class="checkbox-symbol">( )</span> Outro: ________________________</p>
+          </div>
+        </li>
+        <li>
+          Que informações você considera essenciais no sistema?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Visualização da agenda diária</p>
+            <p><span class="checkbox-symbol">(X)</span> Detalhes das consultas marcadas</p>
+            <p><span class="checkbox-symbol">( )</span> Histórico de pacientes</p>
+            <p><span class="checkbox-symbol">( )</span> Outro: ________________________</p>
+          </div>
+        </li>
+        <li>
+          Notificações sobre compromissos seriam úteis para você?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Sim</p>
+            <p><span class="checkbox-symbol">( )</span> Não</p>
+          </div>
+        </li>
+        <li>
+          Você gostaria de poder acessar o sistema de qualquer dispositivo (celular, computador)?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Sim</p>
+            <p><span class="checkbox-symbol">( )</span> Não</p>
+          </div>
+        </li>
+        <li>
+          É importante que o sistema permita comunicação rápida com recepção e pacientes?
+          <div class="options">
+            <p><span class="checkbox-symbol">(X)</span> Sim</p>
+            <p><span class="checkbox-symbol">( )</span> Não</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Observação -->
+    <div class="observation">
+      <h4>Observação:</h4>
+      <p>
+        As respostas obtidas por meio do questionário permitiram identificar de forma clara as principais necessidades e expectativas dos usuários do sistema SmartClinic. Entre os pontos mais destacados pelos participantes estão a facilidade para realizar agendamentos online, a possibilidade de remarcar ou cancelar consultas diretamente pela plataforma e o recebimento de notificações e lembretes automáticos sobre os compromissos.
+      </p>
+      <p>
+        Com base nessas informações, foi possível orientar de maneira mais precisa a definição dos requisitos funcionais e não funcionais do sistema, garantindo que o SmartClinic atenda às demandas reais de pacientes, recepcionistas, médicos e demais stakeholders envolvidos no processo de agendamento de consultas médicas.
+      </p>
+    </div>
+
+        <h3>c) Classificação e Organização dos Requisitos:</h3>
+
+    <p>Separação em requisitos funcionais (RF) e não funcionais (RNF):</p>
+
+    <h3>1 - Requisitos Funcionais (RF):</h3>
+    <ul>
+      <li><strong>RF 01:</strong> O sistema deve permitir que o paciente realize o cadastro na plataforma.</li>
+      <li><strong>RF 02:</strong> O sistema deve permitir que o paciente agende consultas selecionando especialidade, médico e horário disponível.</li>
+      <li><strong>RF 03:</strong> O sistema deve permitir que o paciente remarque consultas previamente agendadas.</li>
+      <li><strong>RF 04:</strong> O sistema deve permitir que o paciente cancele consultas agendadas.</li>
+      <li><strong>RF 05:</strong> O sistema deve permitir que o médico visualize sua agenda diária e semanal.</li>
+      <li><strong>RF 06:</strong> O sistema deve permitir que o recepcionista cadastre médicos e configure seus horários de atendimento.</li>
+      <li><strong>RF 07:</strong> O sistema deve enviar notificações automáticas para lembrar os pacientes sobre as consultas.</li>
+      <li><strong>RF 08:</strong> O sistema deve enviar notificações para médicos e recepcionistas sobre alterações, cancelamentos e novas marcações.</li>
+      <li><strong>RF 09:</strong> O sistema deve permitir login seguro para todos os tipos de usuários (paciente, médico, recepcionista, administrador).</li>
+      <li><strong>RF 10:</strong> O sistema deve gerar relatórios simples para acompanhamento da agenda médica.</li>
+    </ul>
+
+    <h3>Requisitos Não Funcionais (RNF):</h3>
+    <ul>
+      <li><strong>RNF 01:</strong> O sistema deve garantir tempo de resposta inferior a 2 segundos para consultas de agenda.</li>
+      <li><strong>RNF 02:</strong> O sistema deve ter disponibilidade mínima de 99% durante o horário comercial.</li>
+      <li><strong>RNF 03:</strong> O sistema deve garantir a segurança dos dados pessoais dos usuários conforme a LGPD.</li>
+      <li><strong>RNF 04:</strong> A interface do sistema deve ser responsiva, funcionando em desktops, tablets e smartphones.</li>
+      <li><strong>RNF 05:</strong> O sistema deve possuir backups automáticos diários para evitar perda de dados.</li>
+      <li><strong>RNF 06:</strong> O sistema deve ser fácil de usar, com interface intuitiva para usuários de diferentes níveis.</li>
+    </ul>
+    <h2 style="font-size: 20px; font-weight: bold; text-align: left;">
+    Matriz de Rastreabilidade
+</h2>
+
+<table border="1" cellspacing="0" cellpadding="8" style="width:100%; border-collapse: collapse; font-size:14px; text-align:center;">
+    <thead style="font-weight: bold; background-color: #f2f2f2;">
+        <tr>
+            <th>ID</th>
+            <th>Caso de Uso (UC) Relacionado</th>
+            <th>Prioridade</th>
+            <th>Status</th>
+            <th>Solicitante</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr><td>RF01</td><td>UC01 - Cadastrar Paciente</td><td>Alta</td><td>Concluído</td><td>Paciente</td></tr>
+        <tr><td>RF02</td><td>UC02 - Agendar Consulta</td><td>Alta</td><td>Em desenvolvimento</td><td>Paciente</td></tr>
+        <tr><td>RF03</td><td>UC03 - Remarcar Consulta</td><td>Média</td><td>Solicitado</td><td>Paciente</td></tr>
+        <tr><td>RF04</td><td>UC04 - Cancelar Consulta</td><td>Média</td><td>Em análise</td><td>Paciente</td></tr>
+        <tr><td>RF05</td><td>UC05 - Visualizar Agenda</td><td>Alta</td><td>Concluído</td><td>Médico</td></tr>
+        <tr><td>RF06</td><td>UC06 - Gerenciar Médicos</td><td>Alta</td><td>Solicitado</td><td>Recepcionista</td></tr>
+        <tr><td>RF07</td><td>UC07 - Enviar Notificações</td><td>Alta</td><td>Em desenvolvimento</td><td>Recepcionista</td></tr>
+        <tr><td>RF08</td><td>UC07 - Enviar Notificações</td><td>Média</td><td>Em desenvolvimento</td><td>Médico</td></tr>
+        <tr><td>RF09</td><td>UC08 - Autenticação de Usuário</td><td>Alta</td><td>Concluído</td><td>Administrador</td></tr>
+        <tr><td>RF10</td><td>UC09 - Gerar Relatórios</td><td>Baixa</td><td>Solicitado</td><td>Administrador</td></tr>
+
+        <tr><td>RNF01</td><td>Sistema Geral</td><td>Alta</td><td>Concluído</td><td>Administrador</td></tr>
+        <tr><td>RNF02</td><td>Sistema Geral</td><td>Alta</td><td>Em análise</td><td>Administrador</td></tr>
+        <tr><td>RNF03</td><td>Sistema Geral</td><td>Alta</td><td>Concluído</td><td>Administrador</td></tr>
+        <tr><td>RNF04</td><td>Sistema Geral</td><td>Média</td><td>Em análise</td><td>Administrador</td></tr>
+        <tr><td>RNF05</td><td>Sistema Geral</td><td>Média</td><td>Em análise</td><td>Administrador</td></tr>
+        <tr><td>RNF06</td><td>UC07 - Enviar Notificações</td><td>Alta</td><td>Em desenvolvimento</td><td>Recepcionista</td></tr>
+        <tr><td>RNF07</td><td>Sistema Geral</td><td>Alta</td><td>Em análise</td><td>Administrador</td></tr>
+    </tbody>
+</table>
+
+
+  </div>
+</body>
+</html>

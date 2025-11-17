@@ -31,7 +31,8 @@
             color: var(--cor-texto);
             line-height: 1.6;
             margin: 0;
-            padding: 20px;
+            /* ALTERAÇÃO 1: Padding de body menor */
+            padding: 10px; 
             box-sizing: border-box;
         }
 
@@ -40,8 +41,9 @@
             display: flex;
             justify-content: center;
             align-items: flex-start; /* Alinha no topo */
-            min-height: calc(100vh - 40px);
-            padding-top: 40px; /* Um espaço do topo */
+            min-height: calc(100vh - 20px); /* Ajustado ao padding */
+            /* ALTERAÇÃO 2: Espaço do topo */
+            padding-top: 5vh; 
         }
         
         /* =================================================== */
@@ -53,9 +55,11 @@
             background: var(--cor-branca); /* Fundo branco */
             box-shadow: var(--sombra-leve);
             border-radius: 12px;
-            padding: 35px 40px;
+            /* ALTERAÇÃO 3: Padding lateral menor */
+            padding: 35px 25px; 
             width: 100%;
-            max-width: 700px; 
+            /* ALTERAÇÃO 4: Largura máxima de celular */
+            max-width: 390px; 
             /* Borda suave em azul claro */
             border: 2px solid var(--cor-azul-claro-borda); 
         }
@@ -63,16 +67,16 @@
         /* Título */
         .card-formularia h2 {
             color: var(--cor-azul-principal);
-            font-size: 1.8rem;
+            /* ALTERAÇÃO 5: Título menor */
+            font-size: 1.6rem; 
             margin-top: 0;
             margin-bottom: 25px;
             text-align: center;
         }
 
         /* --- 1. Mensagem de Confirmação (Simulada) --- */
-        /* Esta div estaria escondida por padrão */
         .msg-confirmacao {
-            display: none; /* Deixe 'block' para testar o visual */
+            display: none; 
             padding: 15px 20px;
             background-color: #e9f7ef; /* Fundo verde suave */
             color: var(--cor-verde-sucesso);
@@ -102,7 +106,8 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
+            /* ALTERAÇÃO 6: Campos mais "tocáveis" */
+            padding: 14px 15px; 
             font-size: 1rem;
             border: 1px solid var(--cor-borda-leve);
             border-radius: 8px;
@@ -113,7 +118,7 @@
         
         .form-group textarea {
             min-height: 100px;
-            resize: vertical; /* Permite ao usuário aumentar a altura */
+            resize: vertical; 
         }
 
         .form-group select {
@@ -144,7 +149,7 @@
         /* --- 4. Botões de Ação --- */
         .form-acoes {
             display: flex;
-            justify-content: flex-end; /* Alinha à direita */
+            flex-direction: column; /* ALTERAÇÃO 7: Botões empilhados */
             gap: 12px;
             margin-top: 25px;
         }
@@ -153,17 +158,22 @@
             font-family: 'Roboto', sans-serif;
             font-weight: 700;
             font-size: 1rem;
-            padding: 10px 24px;
+            /* ALTERAÇÃO 8: Botões mais "tocáveis" */
+            padding: 14px 24px; 
             border: none;
             border-radius: 50px; /* Arredondado */
             cursor: pointer;
             transition: all 0.2s ease-in-out;
+            /* ALTERAÇÃO 9: Botões com 100% da largura */
+            width: 100%; 
+            box-sizing: border-box; /* Garante padding */
         }
 
         /* Botão "Salvar" (Verde) */
         .btn-success {
             background-color: var(--cor-verde-sucesso);
             color: var(--cor-branca);
+            order: 1; /* Botão principal primeiro */
         }
         .btn-success:hover {
             opacity: 0.85;
@@ -174,6 +184,7 @@
             background-color: var(--cor-cinza-botao);
             color: var(--cor-cinza-botao-texto);
             border: 1px solid var(--cor-cinza-botao-borda);
+            order: 2; /* Botão secundário depois */
         }
         .btn-secondary:hover {
             background-color: #d6dbe0;
@@ -230,7 +241,7 @@
             </div>
             
             <div class="form-acoes">
-                <button type="button" class="btn btn-secondary">Cancelar</lbutton>
+                <button type="button" class="btn btn-secondary">Cancelar</button>
                 <button type="submit" class="btn btn-success">Salvar Informações</button>
             </div>
         </form>
