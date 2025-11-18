@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Método de Pagamento - Confirmação de Consulta</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+      color: #333;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #004080;
+    }
+    label {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.1rem;
+      background-color: #004080;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    .message {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Escolha o Método de Pagamento</h2>
+    <form id="paymentForm">
+      <label>
+        <input type="radio" name="paymentMethod" value="pix" required />
+        PIX
+      </label>
+      <label>
+        <input type="radio" name="paymentMethod" value="cartao" />
+        Cartão de Crédito
+      </label>
+      <label>
+        <input type="radio" name="paymentMethod" value="boleto" />
+        Boleto
+      </label>
+
+      <button type="submit">Confirmar Pagamento</button>
+    </form>
+
+    <div id="message" class="message"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('paymentForm');
+    const messageDiv = document.getElementById('message');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+      // Simula processamento de pagamento (você pode integrar com API real)
+      setTimeout(() => {
+        messageDiv.textContent = `Pagamento realizado com sucesso via ${selectedMethod.toUpperCase()}. Consulta confirmada!`;
+        form.reset();
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
