@@ -1,0 +1,15 @@
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\bin\Debug\net10.0\Teste.exe
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\bin\Debug\net10.0\Teste.deps.json
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\bin\Debug\net10.0\Teste.runtimeconfig.json
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\bin\Debug\net10.0\Teste.dll
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\bin\Debug\net10.0\Teste.pdb
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\obj\Debug\net10.0\Teste.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\obj\Debug\net10.0\Teste.AssemblyInfoInputs.cache
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\obj\Debug\net10.0\Teste.AssemblyInfo.cs
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\obj\Debug\net10.0\Teste.csproj.CoreCompileInputs.cache
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\obj\Debug\net10.0\Teste.sourcelink.json
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\obj\Debug\net10.0\Teste.dll
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\obj\Debug\net10.0\refint\Teste.dll
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\obj\Debug\net10.0\Teste.pdb
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\obj\Debug\net10.0\Teste.genruntimeconfig.cache
+C:\Users\Maiquel\OneDrive\Documentos\Estudos\Faculdade\Teste\obj\Debug\net10.0\ref\Teste.dll
