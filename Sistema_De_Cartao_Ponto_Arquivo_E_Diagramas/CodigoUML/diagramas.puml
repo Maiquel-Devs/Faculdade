@@ -1,0 +1,84 @@
+@startuml
+' Configurações de estilo para ficar com cara de projeto profissional
+skinparam classAttributeIconSize 0
+skinparam PackageStyle rectangle
+skinparam shadowing false
+skinparam roundcorner 10
+
+title Sistema de Cartão de Ponto - Diagrama de Classes
+
+package "factory" {
+    class ConnectionFactory {
+        + {static} getConnection(): Connection
+    }
+}
+
+package "model" {
+    class Departamento {
+        - id: int
+        - nome: String
+        + getId(): int
+        + setId(id: int): void
+        + getNome(): String
+        + setNome(nome: String): void
+    }
+
+    class Funcionario {
+        - id: int
+        - matricula: String
+        - nomeCompleto: String
+        - departamento: Departamento
+        + getId(): int
+        + setId(id: int): void
+        + getMatricula(): String
+        + setMatricula(mat: String): void
+        + getNomeCompleto(): String
+        + setNomeCompleto(nome: String): void
+        + getDepartamento(): Departamento
+        + setDepartamento(dept: Departamento): void
+    }
+
+    class RegistroPonto {
+        - id: int
+        - funcionario: Funcionario
+        - dataHora: LocalDateTime
+        + getId(): int
+        + setId(id: int): void
+        + getFuncionario(): Funcionario
+        + setFuncionario(func: Funcionario): void
+        + getDataHora(): LocalDateTime
+        + setDataHora(dt: LocalDateTime): void
+    }
+}
+
+package "dao" {
+    class RegistroPontoDAO {
+        + buscarPorFuncionarioEData(idFunc: int, data: LocalDate): List<RegistroPonto>
+    }
+}
+
+class Main {
+    + {static} main(args: String[]): void
+}
+
+' --- RELACIONAMENTOS ---
+
+' Associação: Um Funcionário TEM um Departamento
+Funcionario "1" --> "1" Departamento
+
+' Associação: Um Registro de Ponto TEM um Funcionário
+RegistroPonto "n" --> "1" Funcionario
+
+' Dependência: O DAO usa a Factory para obter conexão
+RegistroPontoDAO ..> ConnectionFactory : use
+
+' Dependência: O DAO manipula as classes de modelo
+RegistroPontoDAO ..> RegistroPonto : manipula
+RegistroPontoDAO ..> Funcionario : preenche
+RegistroPontoDAO ..> Departamento : preenche
+
+' Dependência: A Main usa o DAO e o Modelo
+Main ..> RegistroPontoDAO : solicita dados
+Main ..> RegistroPonto : exibe
+
+@enduml
