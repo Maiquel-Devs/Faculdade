@@ -1,0 +1,23 @@
+Post
+
+http://localhost:8080/api/categorias
+
+{
+  "nome": "Ficção Científica"
+}
+
+Post
+
+http://localhost:8080/api/filmes
+
+{
+  "titulo": "Star Wars",
+  "estrelas": 5,
+  "categoria": { "id": 1 }
+}
+
+Get
+
+http://localhost:8080/api/filmes
+
+http://localhost:8080/api/categorias
