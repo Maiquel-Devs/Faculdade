@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Galeria de Personagens</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Galeria de Heróis Gerados</h1>
+    <a th:href="@{/personagens/novo}" class="btn btn-primary btn-lg">Criar Novo Personagem</a>
+  </div>
+  <div th:if="${#lists.isEmpty(personagens)}" class="alert alert-info bg-secondary text-light border-0 text-center">
+    Nenhum personagem foi criado ainda. Clique em "Criar Novo Personagem" para começar!
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" th:each="p : ${personagens}">
+      <div class="card h-100 bg-secondary text-light shadow">
+        <div class="card-body">
+          <h3 class="card-title text-warning" th:text="${p.nome}">Nome</h3>
+          <h6 class="card-subtitle mb-3 text-info" th:text="${p.classe}">Classe</h6>
+          <hr class="border-light">
+          <p class="card-text"><strong>⚔️ Atributos:</strong></p>
+          <pre class="bg-dark p-2 rounded text-light" style="font-size: 0.9rem; white-space: pre-wrap;" th:text="${p.atributos}">Atributos...</pre>
+          <p class="card-text"><strong>📜 História:</strong></p>
+          <p class="small text-light-50" th:text="${p.historia}">História gerada...</p>
+          <p class="card-text text-danger"><strong>⚠️ Fraqueza:</strong></p>
+          <p class="small text-warning" th:text="${p.string}">Fraqueza gerada...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
